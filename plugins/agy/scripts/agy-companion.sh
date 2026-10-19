@@ -17,10 +17,11 @@ cmd_setup() {
 }
 
 cmd_task() {
-  local flags=() text=()
+  local flags=(--dangerously-skip-permissions) text=()
   while [[ $# -gt 0 ]]; do
     case "$1" in
       --resume) flags+=(--continue); shift ;;
+      --read-only) flags+=(--sandbox); shift ;;
       --fresh|--background|--wait) shift ;;
       --model|--effort) [[ $# -ge 2 ]] || die "$1 needs a value"; flags+=("$1" "$2"); shift 2 ;;
       *) text+=("$1"); shift ;;
@@ -77,7 +78,8 @@ cmd_review() {
   name="$(basename "$diff")"
   prompt="Act as a code reviewer. Read the diff in the file $name in the current directory (scope: $scope). Consult other repository files as needed for context. Report only material correctness, security, or data-loss findings, each with file:line. No style nits. If there are no material findings, say so."
   if [[ ${#focus[@]} -gt 0 ]]; then prompt+=" Reviewer focus: ${focus[*]}"; fi
-  "$AGY" --print-timeout "$TIMEOUT" "-p=$prompt"
+  prompt+=" Do not modify, create, or delete any file."
+  "$AGY" --sandbox --dangerously-skip-permissions --print-timeout "$TIMEOUT" "-p=$prompt"
 }
 
 sub="${1:-}"; [[ $# -gt 0 ]] && shift

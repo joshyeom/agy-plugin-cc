@@ -17,6 +17,7 @@ Forwarding rules:
 - Quote the task text as a single argument so the shell does not split or expand it.
 - Treat `--background` and `--wait` as Claude-side execution controls. Strip them; do not pass them to `task`.
 - `--model <value>` and `--effort <value>` are runtime controls. Pass them through to `task` and keep them out of the task text.
+- `--read-only` is a runtime control. Pass it through to `task` and keep it out of the task text. agy is write-capable by default; add `--read-only` only when the user explicitly wants no edits (review, diagnosis, or research only).
 - `--resume` means pass `--resume` to `task` (resumes the most recent agy conversation, globally, not per repo). `--fresh` means pass nothing.
 - If the user is clearly asking to continue prior agy work, such as "continue", "keep going", "resume", or "dig deeper", add `--resume` unless `--fresh` is present.
 - Leave `--model` and `--effort` unset unless the user explicitly asks for them.

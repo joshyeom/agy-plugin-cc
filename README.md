@@ -69,4 +69,5 @@ Checks that `agy` is available and prints its path.
 
 - `--resume` uses agy `--continue`, which picks the most recent agy conversation globally, not per repo.
 - Unlike the codex plugin, there is no background job tracking, no status/result/cancel commands, and no Stop hook.
+- agy runs with `--dangerously-skip-permissions` in both commands (headless agy otherwise denies all shell commands). `/agy:review` and `/agy:rescue --read-only` add `--sandbox`, which blocks writes inside the repository.
 - `/agy:review` writes a temporary diff file named `.agy-review-*` in the repo root and removes it on exit.

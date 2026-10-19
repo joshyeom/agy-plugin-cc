@@ -9,7 +9,7 @@ user-invocable: false
 Use this skill only inside the `agy:agy-rescue` subagent.
 
 Primary helper:
-- `bash "${CLAUDE_PLUGIN_ROOT}/scripts/agy-companion.sh" task [--resume] [--model <id>] [--effort <level>] "<task text>"`
+- `bash "${CLAUDE_PLUGIN_ROOT}/scripts/agy-companion.sh" task [--resume] [--read-only] [--model <id>] [--effort <level>] "<task text>"`
 
 Execution rules:
 - The rescue subagent is a forwarder, not an orchestrator. Its only job is to invoke `task` once and return that stdout unchanged.
@@ -23,6 +23,7 @@ Flag mapping:
 - `--resume`: pass `--resume`; the script maps it to `agy --continue`.
 - `--resume` resumes the most recent agy conversation globally, not per repo. It may not be the conversation from this repository.
 - `--fresh`: pass nothing (no `--continue`). Strip the token.
+- `--read-only`: pass through; the script adds `agy --sandbox`, which blocks writes in the repo. agy is write-capable by default. Use it only when the user explicitly wants no edits (review, diagnosis, research only).
 - `--model <id>`: pass through.
 - `--effort <level>`: pass through. Accepted values are `low`, `medium`, `high`, `xhigh`, `max`.
 - Leave `--model` and `--effort` unset unless the user explicitly asks.

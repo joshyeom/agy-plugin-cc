@@ -1,6 +1,6 @@
 ---
 description: Delegate investigation, an explicit fix request, or follow-up rescue work to the agy rescue subagent
-argument-hint: "[--background|--wait] [--resume|--fresh] [--model <id>] [--effort <low|medium|high|xhigh|max>] [what agy should investigate, solve, or continue]"
+argument-hint: "[--background|--wait] [--resume|--fresh] [--read-only] [--model <id>] [--effort <low|medium|high|xhigh|max>] [what agy should investigate, solve, or continue]"
 allowed-tools: Bash(bash:*), Agent
 ---
 
@@ -18,6 +18,7 @@ Execution mode:
 - If neither flag is present, default to foreground.
 - `--background` and `--wait` are execution flags for Claude Code. Do not treat them as part of the task text.
 - `--model` and `--effort` are runtime-selection flags. Preserve them for the forwarded `task` call.
+- `--read-only` is a routing flag. Leave it in the forwarded request. Use it only when the user explicitly wants no edits.
 - `--resume` and `--fresh` are routing flags. Leave them in the forwarded request.
 - agy has no per-repo thread store, so do not ask whether to continue. If the user says continue, keep going, resume, or dig deeper, add `--resume` unless `--fresh` is present.
 
