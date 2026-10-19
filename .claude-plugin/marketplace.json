@@ -1,7 +1,7 @@
 {
-  "name": "local-agy",
+  "name": "agy-plugin-cc",
   "owner": {
-    "name": "yeomjeongho"
+    "name": "joshyeom"
   },
   "metadata": {
     "description": "Local plugin to use agy in Claude Code for delegation and code review.",
