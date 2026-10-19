@@ -4,7 +4,7 @@ Use agy from inside Claude Code to review code or delegate tasks.
 
 ## What You Get
 
-- `/agy:review` for a read-only agy review of your working tree or branch
+- `/agy:review` for an agy review of your working tree or branch
 - `/agy:rescue` to delegate a task to agy, also available as the `agy:agy-rescue` subagent
 - `/agy:setup` to check that the `agy` CLI is found
 
